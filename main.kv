@@ -1,0 +1,211 @@
+# main.kv
+
+# <LoginScreen>:
+#     name: 'login'
+#     username: username
+#     password: password
+#     # error_message: error_message
+#     BoxLayout:
+#         orientation: 'vertical'
+#         padding: dp(10)
+#         spacing: dp(10)
+
+#         Label:
+#             text: 'Login'
+#             font_size: 32
+#             size_hint_y: None
+#             height: dp(60)
+#             bold: True
+
+#         TextInput:
+#             id: username
+#             hint_text: 'Username'
+#             size_hint_y: None
+#             height: dp(50)
+
+#         TextInput:
+#             id: password
+#             hint_text: 'Password'
+#             password: True
+#             size_hint_y: None
+#             height: dp(50)
+
+#         Label:
+#             text: root.error_message
+#             color: (1, 0, 0, 1)
+#             size_hint_y: None
+#             height: dp(30)
+
+#         Button:
+#             text: 'Login'
+#             size_hint_y: None
+#             height: dp(50)
+#             on_press: root.login()
+
+#         Button:
+#             text: 'Register'
+#             size_hint_y: None
+#             height: dp(50)
+#             on_press: app.root.current = 'register'
+
+# <RegistrationScreen>:
+#     name: 'register'
+#     username: username
+#     password: password
+#     confirm_password: confirm_password
+#     # registration_message: registration_message
+#     BoxLayout:
+#         orientation: 'vertical'
+#         padding: dp(10)
+#         spacing: dp(10)
+
+#         Label:
+#             text: 'Register'
+#             font_size: 32
+#             size_hint_y: None
+#             height: dp(60)
+#             bold: True
+
+#         TextInput:
+#             id: username
+#             hint_text: 'Username'
+#             size_hint_y: None
+#             height: dp(50)
+
+#         TextInput:
+#             id: password
+#             hint_text: 'Password'
+#             password: True
+#             size_hint_y: None
+#             height: dp(50)
+
+#         TextInput:
+#             id: confirm_password
+#             hint_text: 'Confirm Password'
+#             password: True
+#             size_hint_y: None
+#             height: dp(50)
+
+#         Label:
+#             text: root.registration_message
+#             color: (1, 0, 0, 1)
+#             size_hint_y: None
+#             height: dp(30)
+
+#         Button:
+#             text: 'Register'
+#             size_hint_y: None
+#             height: dp(50)
+#             on_press: root.register()
+
+#         Button:
+#             text: 'Back to Login'
+#             size_hint_y: None
+#             height: dp(50)
+#             on_press: app.root.current = 'login'
+
+<UserDashboard>:
+    name: 'user_dashboard'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+
+        Label:
+            text: 'User Dashboard'
+            font_size: 32
+            size_hint_y: None
+            height: dp(60)
+            bold: True
+
+        Button:
+            text: 'Report Fire'
+            size_hint_y: None
+            height: dp(50)
+            on_press: app.root.current = 'report'
+
+        Button:
+            text: 'Logout'
+            size_hint_y: None
+            height: dp(50)
+            on_press: app.root.current = 'login'
+
+<AdminDashboard>:
+    name: 'admin_dashboard'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+
+        Label:
+            text: 'Admin Dashboard'
+            font_size: 32
+            size_hint_y: None
+            height: dp(60)
+            bold: True
+
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            GridLayout:
+                id: reports_list
+                cols: 1
+                size_hint_y: None
+                height: self.minimum_height
+
+        Button:
+            text: 'Logout'
+            size_hint_y: None
+            height: dp(50)
+            on_press: app.root.current = 'login'
+
+<ReportScreen>:
+    name: 'report'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+        # canvas.before:
+        #     Color:
+        #         # rgb:0.2, 0.6, 0.8, 1  # RGBA values for the background color
+        #         rgb:1, 3, 103, 3 # RGBA values for the background color
+        #     Rectangle:
+        #         pos:self.pos
+        #         size:self.size
+
+        Label:
+            id: location_label
+            text: root.location_label
+            size_hint_y: None
+            height: dp(30)
+
+        Image:
+            id: image
+            source: root.image_path
+            size_hint_y: None
+            height: dp(200)
+
+        TextInput:
+            id: description_input
+            hint_text: 'Report Description'
+            size_hint_y: None
+            height: dp(100)
+
+        Button:
+            text: 'Take Picture'
+            size_hint_y: None
+            height: dp(50)
+            on_press: root.take_picture()
+
+        Button:
+            text: 'Submit Report'
+            size_hint_y: None
+            height: dp(50)
+            color: 'white'
+            on_press: root.submit_report()
+
+        Button:
+            text: 'Back'
+            size_hint_y: None
+            height: dp(50)
+            on_press: root.go_back()
